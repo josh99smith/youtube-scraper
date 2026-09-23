@@ -1,0 +1,18 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Best Damn YouTube Scraper output",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Videos or channels",
+            "template": "{{links.apiDefaultDatasetUrl}}",
+            "description": "One record per video (or per channel in channel mode) with statistics and metadata, plus free failure records for inputs that could not be read."
+        },
+        "summary": {
+            "type": "string",
+            "title": "Run summary",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/SUMMARY",
+            "description": "Counts of queued and delivered results, failures, quota units used and billed events."
+        }
+    }
+}

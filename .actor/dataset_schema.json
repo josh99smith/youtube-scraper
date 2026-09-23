@@ -1,0 +1,343 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "description": "Records from the official YouTube Data API v3. type \"video\": one video with statistics and channel stats (billed). type \"channel\": one channel profile (billed). success: false: a failure record for an input that could not be read (free).",
+        "properties": {
+            "success": {
+                "type": "boolean",
+                "description": "True for a delivered video or channel (billed); false for a failure record (free)."
+            },
+            "type": {
+                "type": "string",
+                "description": "Record type.",
+                "enum": ["video", "channel"]
+            },
+            "videoId": {
+                "type": "string",
+                "description": "11-character YouTube video ID."
+            },
+            "url": {
+                "type": "string",
+                "description": "Watch URL of the video, or the channel URL for channel records.",
+                "format": "uri"
+            },
+            "title": {
+                "type": ["string", "null"],
+                "description": "Video or channel title."
+            },
+            "description": {
+                "type": ["string", "null"],
+                "description": "Video or channel description."
+            },
+            "publishedAt": {
+                "type": ["string", "null"],
+                "description": "Upload date of the video, or creation date of the channel (ISO 8601).",
+                "format": "date-time"
+            },
+            "durationSeconds": {
+                "type": ["integer", "null"],
+                "description": "Video length in seconds (0 for upcoming live streams)."
+            },
+            "viewCount": {
+                "type": ["integer", "null"],
+                "description": "Views of the video, or total channel views."
+            },
+            "likeCount": {
+                "type": ["integer", "null"],
+                "description": "Likes (null when the owner hides them)."
+            },
+            "commentCount": {
+                "type": ["integer", "null"],
+                "description": "Comments (null when comments are off)."
+            },
+            "tags": {
+                "type": "array",
+                "description": "Tags set by the uploader.",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "categoryId": {
+                "type": ["string", "null"],
+                "description": "YouTube category ID."
+            },
+            "category": {
+                "type": ["string", "null"],
+                "description": "YouTube category name."
+            },
+            "language": {
+                "type": ["string", "null"],
+                "description": "Default audio or metadata language."
+            },
+            "liveStatus": {
+                "type": "string",
+                "description": "none, live, upcoming or was-live.",
+                "enum": ["none", "live", "upcoming", "was-live"]
+            },
+            "liveStartedAt": {
+                "type": ["string", "null"],
+                "description": "When the live stream started.",
+                "format": "date-time"
+            },
+            "isMadeForKids": {
+                "type": ["boolean", "null"],
+                "description": "Marked as made for kids."
+            },
+            "hasCaptions": {
+                "type": ["boolean", "null"],
+                "description": "Has captions uploaded."
+            },
+            "definition": {
+                "type": ["string", "null"],
+                "description": "hd or sd."
+            },
+            "license": {
+                "type": ["string", "null"],
+                "description": "youtube or creativeCommon."
+            },
+            "thumbnailUrl": {
+                "type": ["string", "null"],
+                "description": "Largest available thumbnail or channel avatar."
+            },
+            "channelId": {
+                "type": ["string", "null"],
+                "description": "Channel ID."
+            },
+            "channelTitle": {
+                "type": ["string", "null"],
+                "description": "Channel name."
+            },
+            "channelUrl": {
+                "type": ["string", "null"],
+                "description": "Channel URL."
+            },
+            "channelSubscribers": {
+                "type": ["integer", "null"],
+                "description": "Channel subscriber count (rounded by YouTube; null when hidden)."
+            },
+            "channelVideoCount": {
+                "type": ["integer", "null"],
+                "description": "Public videos on the channel."
+            },
+            "channelCountry": {
+                "type": ["string", "null"],
+                "description": "Country set by the channel."
+            },
+            "handle": {
+                "type": ["string", "null"],
+                "description": "Channel records: the @handle."
+            },
+            "country": {
+                "type": ["string", "null"],
+                "description": "Channel records: country."
+            },
+            "subscriberCount": {
+                "type": ["integer", "null"],
+                "description": "Channel records: subscribers (null when hidden)."
+            },
+            "videoCount": {
+                "type": ["integer", "null"],
+                "description": "Channel records: public videos."
+            },
+            "keywords": {
+                "type": "array",
+                "description": "Channel records: channel keywords.",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "uploadsPlaylistId": {
+                "type": "string",
+                "description": "Channel records: playlist ID of all uploads."
+            },
+            "input": {
+                "type": "string",
+                "description": "The input line (or \"search: <term>\") this record came from."
+            },
+            "sourceType": {
+                "type": "string",
+                "description": "video, channel, playlist or search.",
+                "enum": ["video", "channel", "playlist", "search"]
+            },
+            "searchQuery": {
+                "type": ["string", "null"],
+                "description": "Search term that found the video."
+            },
+            "playlistId": {
+                "type": ["string", "null"],
+                "description": "Playlist the video was read from (uploads playlist for channels)."
+            },
+            "position": {
+                "type": ["integer", "null"],
+                "description": "Position in the playlist or search results."
+            },
+            "errorType": {
+                "type": "string",
+                "description": "Failure records only.",
+                "enum": [
+                    "missing-api-key",
+                    "invalid-url",
+                    "not-found",
+                    "rate-limited",
+                    "http-error",
+                    "timeout",
+                    "network",
+                    "other"
+                ]
+            },
+            "error": {
+                "type": "string",
+                "description": "Failure records only: human-readable explanation."
+            },
+            "statusCode": {
+                "type": "integer",
+                "description": "Failure records only: HTTP status from the YouTube API."
+            },
+            "scrapedAt": {
+                "type": "string",
+                "description": "When the record was produced (ISO 8601).",
+                "format": "date-time"
+            }
+        },
+        "required": ["success", "scrapedAt"]
+    },
+    "views": {
+        "overview": {
+            "title": "Videos",
+            "transformation": {
+                "fields": [
+                    "thumbnailUrl",
+                    "title",
+                    "channelTitle",
+                    "viewCount",
+                    "likeCount",
+                    "commentCount",
+                    "durationSeconds",
+                    "publishedAt",
+                    "url"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "thumbnailUrl": {
+                        "label": "Thumbnail",
+                        "format": "image"
+                    },
+                    "title": {
+                        "label": "Title",
+                        "format": "text"
+                    },
+                    "channelTitle": {
+                        "label": "Channel",
+                        "format": "text"
+                    },
+                    "viewCount": {
+                        "label": "Views",
+                        "format": "number"
+                    },
+                    "likeCount": {
+                        "label": "Likes",
+                        "format": "number"
+                    },
+                    "commentCount": {
+                        "label": "Comments",
+                        "format": "number"
+                    },
+                    "durationSeconds": {
+                        "label": "Seconds",
+                        "format": "number"
+                    },
+                    "publishedAt": {
+                        "label": "Published",
+                        "format": "date"
+                    },
+                    "url": {
+                        "label": "Link",
+                        "format": "link"
+                    }
+                }
+            }
+        },
+        "channels": {
+            "title": "Channels",
+            "transformation": {
+                "fields": [
+                    "thumbnailUrl",
+                    "title",
+                    "handle",
+                    "subscriberCount",
+                    "viewCount",
+                    "videoCount",
+                    "country",
+                    "url"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "thumbnailUrl": {
+                        "label": "Avatar",
+                        "format": "image"
+                    },
+                    "title": {
+                        "label": "Channel",
+                        "format": "text"
+                    },
+                    "handle": {
+                        "label": "Handle",
+                        "format": "text"
+                    },
+                    "subscriberCount": {
+                        "label": "Subscribers",
+                        "format": "number"
+                    },
+                    "viewCount": {
+                        "label": "Total views",
+                        "format": "number"
+                    },
+                    "videoCount": {
+                        "label": "Videos",
+                        "format": "number"
+                    },
+                    "country": {
+                        "label": "Country",
+                        "format": "text"
+                    },
+                    "url": {
+                        "label": "Link",
+                        "format": "link"
+                    }
+                }
+            }
+        },
+        "failures": {
+            "title": "Failures",
+            "transformation": {
+                "fields": ["input", "errorType", "error", "statusCode"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "input": {
+                        "label": "Input",
+                        "format": "text"
+                    },
+                    "errorType": {
+                        "label": "Error type",
+                        "format": "text"
+                    },
+                    "error": {
+                        "label": "Error",
+                        "format": "text"
+                    },
+                    "statusCode": {
+                        "label": "HTTP",
+                        "format": "number"
+                    }
+                }
+            }
+        }
+    }
+}

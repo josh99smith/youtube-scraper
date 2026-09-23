@@ -1,0 +1,59 @@
+[
+    {
+        "name": "scrape-all-videos-from-a-youtube-channel",
+        "title": "Scrape all videos from a YouTube channel",
+        "seoTitle": "Scrape all videos from a YouTube channel to CSV",
+        "seoDescription": "Export every video of a YouTube channel with views, likes, comments, duration, tags and publish date via the official API. $1 per 1,000 videos.",
+        "description": "Export every upload of one or more YouTube channels with views, likes, comment counts, duration, tags and publish dates, plus the channel's subscriber count, through the official YouTube Data API.",
+        "input": {
+            "startUrls": [
+                "https://www.youtube.com/@YouTube"
+            ],
+            "maxResults": 0
+        }
+    },
+    {
+        "name": "youtube-channel-subscriber-count-checker",
+        "title": "Bulk YouTube channel stats and subscriber counts",
+        "seoTitle": "Bulk YouTube subscriber count and channel stats checker",
+        "seoDescription": "Get subscriber counts, total views, video counts and countries for a list of YouTube channels in one run, via the official API. Pay per channel.",
+        "description": "Check subscriber counts, total views, number of videos, country and channel keywords for a list of YouTube channels at once. Ideal for influencer shortlists and creator databases.",
+        "input": {
+            "startUrls": [
+                "https://www.youtube.com/@YouTube",
+                "https://www.youtube.com/@jawed",
+                "https://www.youtube.com/channel/UCBR8-60-B28hp2BmDPdntcQ"
+            ],
+            "outputMode": "channels"
+        }
+    },
+    {
+        "name": "youtube-search-results-scraper",
+        "title": "Scrape YouTube search results for a keyword",
+        "seoTitle": "Scrape YouTube search results with views and likes",
+        "seoDescription": "Export the videos YouTube returns for a keyword, sorted by relevance, date or views, with full statistics and channel data. Official API, pay per video.",
+        "description": "Collect the videos YouTube shows for your keywords, sorted by relevance, upload date or view count, with views, likes, comments, duration and channel subscribers for competitor and content research.",
+        "input": {
+            "searchQueries": [
+                "web scraping tutorial"
+            ],
+            "maxResults": 50,
+            "searchOrder": "viewCount"
+        }
+    },
+    {
+        "name": "track-new-youtube-uploads-from-channels",
+        "title": "Track new uploads from YouTube channels",
+        "seoTitle": "Track new YouTube uploads from a list of channels",
+        "seoDescription": "Schedule a run that returns only the last week's uploads from a list of YouTube channels, with views and likes, for content monitoring and alerts.",
+        "description": "Get only the videos a list of channels published in the last 7 days, with their early view and like counts. Schedule it weekly and connect Slack, Google Sheets or a webhook for competitor monitoring.",
+        "input": {
+            "startUrls": [
+                "https://www.youtube.com/@YouTube",
+                "https://www.youtube.com/@jawed"
+            ],
+            "publishedAfter": "7 days",
+            "maxResults": 0
+        }
+    }
+]

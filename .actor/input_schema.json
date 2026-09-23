@@ -1,0 +1,102 @@
+{
+    "$schema": "https://apify.com/schemas/v1/input.ide.json",
+    "title": "Best Damn YouTube Scraper input",
+    "description": "Paste YouTube channel, playlist or video URLs and/or search terms. Every video (or channel, in channel mode) delivered is one billable result; inputs that cannot be read are reported free of charge.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrls": {
+            "title": "YouTube URLs",
+            "type": "array",
+            "description": "One per line. Channel URLs (youtube.com/@handle, youtube.com/channel/UC...) or @handles return the channel's latest uploads; playlist URLs (youtube.com/playlist?list=...) return the playlist; video, Shorts and youtu.be URLs or bare video IDs return that video.",
+            "editor": "stringList",
+            "prefill": ["https://www.youtube.com/@YouTube"]
+        },
+        "searchQueries": {
+            "title": "Search terms",
+            "type": "array",
+            "description": "Optional. Find videos by keyword, exactly like the YouTube search box. Each term returns up to \"Max results\" videos.",
+            "editor": "stringList"
+        },
+        "maxResults": {
+            "title": "Max results per channel, playlist or search",
+            "type": "integer",
+            "description": "How many videos to take from each channel, playlist or search term (newest first for channels). Use 0 for all of them (search is limited to 500 by YouTube).",
+            "default": 50,
+            "prefill": 20,
+            "minimum": 0,
+            "editor": "number"
+        },
+        "publishedAfter": {
+            "title": "Only videos published after",
+            "type": "string",
+            "description": "Optional. A date (2026-01-31) or a relative period such as \"7 days\", \"2 weeks\" or \"6 months\". Applies to channels, playlists and search.",
+            "editor": "textfield"
+        },
+        "outputMode": {
+            "title": "Output",
+            "type": "string",
+            "description": "\"Videos\" returns one record per video with its statistics and channel stats. \"Channels\" returns one record per channel (subscribers, total views, video count, country, description) without listing videos.",
+            "editor": "select",
+            "enum": ["videos", "channels"],
+            "enumTitles": ["Videos", "Channels only"],
+            "default": "videos"
+        },
+        "searchOrder": {
+            "title": "Search sort order",
+            "type": "string",
+            "description": "How YouTube ranks search results.",
+            "editor": "select",
+            "enum": ["relevance", "date", "viewCount", "rating"],
+            "enumTitles": ["Relevance", "Upload date (newest first)", "View count", "Rating"],
+            "default": "relevance",
+            "sectionCaption": "Search options"
+        },
+        "searchDuration": {
+            "title": "Search video length",
+            "type": "string",
+            "description": "Short: under 4 minutes. Medium: 4 to 20 minutes. Long: over 20 minutes.",
+            "editor": "select",
+            "enum": ["any", "short", "medium", "long"],
+            "enumTitles": ["Any", "Short (< 4 min)", "Medium (4-20 min)", "Long (> 20 min)"],
+            "default": "any"
+        },
+        "searchRegion": {
+            "title": "Search country",
+            "type": "string",
+            "description": "Optional two-letter country code (US, GB, DE, IN...) to get the results people in that country see.",
+            "editor": "textfield"
+        },
+        "searchLanguage": {
+            "title": "Search language",
+            "type": "string",
+            "description": "Optional two-letter language code (en, es, de...) to prefer videos in that language.",
+            "editor": "textfield"
+        },
+        "maxDescriptionLength": {
+            "title": "Max description length",
+            "type": "integer",
+            "description": "Cut video descriptions to this many characters to keep exports small. 0 keeps the full description.",
+            "default": 0,
+            "minimum": 0,
+            "editor": "number",
+            "sectionCaption": "Advanced"
+        },
+        "apiKey": {
+            "title": "YouTube API key",
+            "type": "string",
+            "description": "Optional. Your own free YouTube Data API v3 key (Google Cloud Console > APIs & Services > Credentials, with the YouTube Data API v3 enabled). Without it the Actor uses a shared key whose daily quota is shared by all users and allows up to 5 search terms and 100 search results per term per run; with your own key you get 10,000 quota units a day to yourself.",
+            "editor": "textfield",
+            "isSecret": true
+        },
+        "maxConcurrency": {
+            "title": "Max concurrency",
+            "type": "integer",
+            "description": "How many channels, playlists or searches to read in parallel.",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 10,
+            "editor": "number"
+        }
+    }
+}

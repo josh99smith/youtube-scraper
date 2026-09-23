@@ -1,0 +1,31 @@
+{
+    "seoTitle": "Best Damn YouTube Scraper API: videos, channels & search",
+    "seoDescription": "Scrape YouTube videos, channel stats, playlists and search results via the official API: views, likes, comments, tags. $1 per 1,000 videos.",
+    "categories": [
+        "VIDEOS",
+        "SOCIAL_MEDIA",
+        "MARKETING"
+    ],
+    "isPublic": false,
+    "actorPermissionLevel": "LIMITED_PERMISSIONS",
+    "defaultRunOptions": {
+        "build": "latest",
+        "memoryMbytes": 512,
+        "timeoutSecs": 3600
+    },
+    "pricing": {
+        "events": {
+            "video": {
+                "eventTitle": "Video scraped",
+                "eventDescription": "One YouTube video delivered with its views, likes, comment count, duration, tags, publish date and channel stats. Private, deleted and unavailable videos and quota errors are not charged.",
+                "eventPriceUsd": 0.001,
+                "isPrimaryEvent": true
+            },
+            "channel": {
+                "eventTitle": "Channel scraped",
+                "eventDescription": "One YouTube channel profile delivered in \"Channels only\" mode: subscribers, total views, video count, country, description and keywords.",
+                "eventPriceUsd": 0.001
+            }
+        }
+    }
+}

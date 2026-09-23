@@ -1,0 +1,118 @@
+{
+    "prefill": {
+        "input": {
+            "startUrls": [
+                "https://www.youtube.com/@YouTube"
+            ],
+            "maxResults": 20
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "minOk": 20,
+            "maxItems": 20,
+            "maxFailed": 0,
+            "maxDurationSecs": 60
+        }
+    },
+    "channels-mode": {
+        "input": {
+            "startUrls": [
+                "@YouTube",
+                "https://www.youtube.com/channel/UC4QobU6STFB0P71PMvOGN5A"
+            ],
+            "outputMode": "channels"
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "minOk": 2,
+            "maxItems": 2,
+            "maxFailed": 0
+        }
+    },
+    "search-small": {
+        "input": {
+            "searchQueries": [
+                "web scraping tutorial"
+            ],
+            "maxResults": 10,
+            "searchOrder": "viewCount"
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "minOk": 10,
+            "maxFailed": 0
+        }
+    },
+    "playlist-and-dedupe": {
+        "input": {
+            "startUrls": [
+                "https://www.youtube.com/playlist?list=PLbpi6ZahtOH6Blw3RGYpWkSByi_T7Rygb",
+                "jNQXAC9IVRw",
+                "https://youtu.be/jNQXAC9IVRw"
+            ],
+            "maxResults": 5
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "minOk": 6,
+            "maxItems": 6,
+            "maxFailed": 0
+        }
+    },
+    "mixed-failures": {
+        "input": {
+            "startUrls": [
+                "https://example.com/x",
+                "https://www.youtube.com/watch?v=aaaaaaaaaaa",
+                "@thisHandleDoesNotExist12345",
+                "jNQXAC9IVRw"
+            ]
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "minOk": 1,
+            "errorTypes": [
+                "invalid-url",
+                "not-found"
+            ]
+        }
+    },
+    "bad-key": {
+        "input": {
+            "startUrls": [
+                "jNQXAC9IVRw"
+            ],
+            "apiKey": "invalid-key-for-testing"
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "maxOk": 0,
+            "errorTypes": [
+                "other"
+            ]
+        }
+    },
+    "budget-stop": {
+        "input": {
+            "startUrls": [
+                "@YouTube"
+            ],
+            "maxResults": 200
+        },
+        "maxTotalChargeUsd": 0.02,
+        "expect": {
+            "status": "SUCCEEDED",
+            "stoppedEarlyDueToBudget": true,
+            "maxCostUsd": 0.03
+        }
+    },
+    "empty-input": {
+        "input": {
+            "startUrls": []
+        },
+        "expect": {
+            "status": "FAILED",
+            "maxItems": 0
+        }
+    }
+}
