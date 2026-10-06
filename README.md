@@ -221,3 +221,4 @@ You can also attach [webhooks](https://docs.apify.com/platform/integrations/webh
 ## Support and feedback
 
 Found a channel or video that fails unexpectedly, or a field you are missing? Open a ticket in the **Issues** tab of this Actor.
+ If this Actor saved you time, a review on its Store page helps other people find it.
